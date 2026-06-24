@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridge Languages | Latin Tutoring for High School Students</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FBF8F3;
+            --dark-slate: #2C3539;
+            --terracotta: #D4745E;
+            --sage: #A8B5A0;
+            --ochre: #E8A963;
+            --warm-gray: #8B8578;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--cream);
+            color: var(--dark-slate);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(251, 248, 243, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 133, 120, 0.15);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-slate);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--terracotta);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: var(--dark-slate);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--terracotta);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--terracotta);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .dropdown-toggle::before {
+            content: '▾';
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .dropdown:hover .dropdown-toggle::before {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(44, 53, 57, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 180px;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--dark-slate);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--cream);
+            color: var(--terracotta);
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 5% 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212, 116, 94, 0.08), transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-50px, 50px) rotate(5deg); }
+        }
+
+        .hero .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-slate);
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            color: var(--terracotta);
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--warm-gray);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .hero .tagline {
+            font-size: 1rem;
+            color: var(--terracotta);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Karla', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--terracotta);
+            color: white;
+            box-shadow: 0 4px 20px rgba(212, 116, 94, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #c26651;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(212, 116, 94, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark-slate);
+            border: 2px solid var(--dark-slate);
+        }
+
+        .btn-secondary:hover {
+            background: var(--dark-slate);
+            color: var(--cream);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .hero-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(44, 53, 57, 0.12);
+            border: 1px solid rgba(139, 133, 120, 0.1);
+        }
+
+        .hero-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-slate);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--terracotta);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--warm-gray);
+            margin-top: 0.5rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .features .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-slate);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--warm-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: var(--cream);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--terracotta), var(--ochre));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-slate);
+        }
+
+        .feature-card p {
+            color: var(--warm-gray);
+            line-height: 1.7;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, #f5f1ec 0%, var(--cream) 100%);
+            position: relative;
+        }
+
+        .how-it-works::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--warm-gray), transparent);
+            opacity: 0.2;
+        }
+
+        .steps {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.1s; }
+        .step:nth-child(2) { animation-delay: 0.2s; }
+        .step:nth-child(3) { animation-delay: 0.3s; }
+        .step:nth-child(4) { animation-delay: 0.4s; }
+
+        .step::after {
+            content: '→';
+            position: absolute;
+            top: 40px;
+            right: -1.5rem;
+            font-size: 2rem;
+            color: var(--sage);
+            opacity: 0.4;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: var(--terracotta);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark-slate);
+        }
+
+        .step p {
+            color: var(--warm-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .testimonial-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .testimonial {
+            background: var(--cream);
+            padding: 3rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--terracotta);
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .testimonial:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial:nth-child(2) { animation-delay: 0.2s; }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-slate);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--sage), var(--ochre));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            color: var(--dark-slate);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--warm-gray);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--dark-slate) 0%, #3a4448 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -25%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 116, 94, 0.15), transparent 70%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-section .btn-primary {
+            background: var(--terracotta);
+            font-size: 1.1rem;
+            padding: 1.2rem 3rem;
+        }
+
+        /* Contact Form Section */
+        .contact-form-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .form-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--cream);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(44, 53, 57, 0.08);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--dark-slate);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.875rem 1rem;
+            border: 2px solid rgba(139, 133, 120, 0.2);
+            border-radius: 8px;
+            font-family: 'Karla', sans-serif;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 3px rgba(212, 116, 94, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-wrapper {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--dark-slate);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        footer .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            color: var(--terracotta);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Review Cards */
+        .testimonials .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(139, 133, 120, 0.15);
+            background: white;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(44, 53, 57, 0.1);
+        }
+
+        .review-score-bar {
+            background: var(--dark-slate);
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .score-main {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .score-big {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--ochre);
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .score-sub {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+        }
+
+        .score-sub-label {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .score-sub-val {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--sage);
+        }
+
+        .score-pair {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .score-pair-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .score-pair-divider {
+            width: 1px;
+            height: 36px;
+            background: rgba(255,255,255,0.12);
+        }
+
+        .score-badge {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.4);
+            text-align: right;
+            max-width: 80px;
+            line-height: 1.3;
+        }
+
+        .review-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+            gap: 1.25rem;
+        }
+
+        .review-card-plain {
+            background: var(--cream);
+        }
+
+        .review-card-plain .review-body,
+        .review-card-plain {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.25rem;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: var(--dark-slate);
+            font-style: italic;
+            margin: 0;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .review-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .review-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark-slate);
+        }
+
+        .review-meta {
+            font-size: 0.8rem;
+            color: var(--warm-gray);
+        }
+
+        @media (max-width: 1024px) {
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Bridge <span>Languages</span></div>
+            <ul>
+                <li><a href="#features">Home</a></li>
+                <li><a href="our-team.html">Our Team</a></li>
+                <li class="dropdown">
+                    <span class="dropdown-toggle">Results</span>
+                    <div class="dropdown-menu">
+                        <a href="hsc-results.html">HSC Results</a>
+                        <a href="school-results.html">School Results</a>
+                    </div>
+                </li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="#contact-form">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Master <span>Latin</span> with Confidence</h1>
+                <p class="tagline">Sydney's premier Latin tuition company</p>
+                <p>Online group classes designed for high school students. We delivered 12.5% of all top band results in NSW for both Latin Continuers and Extension in 2025.</p>
+                <div class="cta-group">
+                    <a href="get-started.html" class="btn btn-primary">Start Learning</a>
+                    <a href="#how-it-works" class="btn btn-secondary">How It Works</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <h3>Our 2025 Results</h3>
+                    <div class="stat-grid">
+                        <div class="stat">
+                            <span class="stat-number">12.5%</span>
+                            <p class="stat-label">All NSW Top Bands</p>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">96</span>
+                            <p class="stat-label">Median Continuers</p>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">48</span>
+                            <p class="stat-label">Median Extension</p>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">99.6</span>
+                            <p class="stat-label">Median ATAR</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Makes Us Different</h2>
+                <p>Bridge Languages combines peer learning with expert instruction to make Latin click</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Small Group Classes</h3>
+                    <p>Learn alongside 8-12 fellow students. Ask questions freely, share struggles, and celebrate breakthroughs together in a supportive environment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Concept Mastery</h3>
+                    <p>We break down complex grammar—declensions, cases, conjugations—into digestible chunks with plenty of practice and real-world examples.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Flexible Scheduling</h3>
+                    <p>We work with you to find class times that fit your schedule. Join from anywhere with just a laptop and internet connection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Getting Started is Easy</h2>
+                <p>From enrollment to your first class in just a few simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Level</h3>
+                    <p>Tell us which Latin course you're taking and your current challenges</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Book a Time</h3>
+                    <p>Fill out a quick form and we'll find times that work for you</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Join Your Group</h3>
+                    <p>Meet your instructor and classmates in your first online session</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Watch Grades Improve</h3>
+                    <p>See your confidence and understanding grow week by week</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Students Say</h2>
+                <p>Real results from real HSC students</p>
+            </div>
+
+            <!-- Top row: score-led cards -->
+            <div class="review-grid review-grid-top">
+
+                <!-- 1. Aaron — score bar with marks, black border -->
+                <div class="review-card" style="border: 2px solid var(--dark-slate);">
+                    <div class="review-score-bar">
+                        <div class="score-pair">
+                            <div class="score-pair-item">
+                                <span class="score-sub-label">Extension</span>
+                                <span class="score-big">48<span style="font-size:1rem;opacity:0.5;">/50</span></span>
+                            </div>
+                            <div class="score-pair-divider"></div>
+                            <div class="score-pair-item">
+                                <span class="score-sub-label">Continuers</span>
+                                <span class="score-big">96<span style="font-size:1rem;opacity:0.5;">/100</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        <p class="review-text">"In just my short time with him, I have found Anthony to be of great character and an excellent tutor — a good laugh during classes, always ensuring straight faces do not last long. Explanations are clear, quick and concise, resulting in minimal confusion. Lesson pace is very ideal. For the present, and very probably for the decently far future, I cannot think of a thing I would change about Anthony's classes."</p>
+                        <div class="review-author">
+                            <div class="review-avatar" style="background: var(--dark-slate);">A</div>
+                            <div>
+                                <div class="review-name">Aaron</div>
+                                <div class="review-meta">HSC 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Sophie -->
+                <div class="review-card">
+                    <div class="review-score-bar">
+                        <div class="score-pair">
+                            <div class="score-pair-item">
+                                <span class="score-sub-label">Extension</span>
+                                <span class="score-big">49<span style="font-size:1rem;opacity:0.5;">/50</span></span>
+                            </div>
+                            <div class="score-pair-divider"></div>
+                            <div class="score-pair-item">
+                                <span class="score-sub-label">Continuers</span>
+                                <span class="score-big">96<span style="font-size:1rem;opacity:0.5;">/100</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        <p class="review-text">"I thought I wouldn't do too well because I messed up some internal assessments — but for Latin Extension I received 49/50 for both internal and external, and for Latin Continuers I scored 96/100. I scored the highest external mark, 97/100, so that really helped me recover. Thanks again for helping me with Latin for the past 6 years."</p>
+                        <div class="review-author">
+                            <div class="review-avatar" style="background: var(--terracotta);">S</div>
+                            <div>
+                                <div class="review-name">Sophie Y.</div>
+                                <div class="review-meta">Meriden School, HSC 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Hannah — anonymous -->
+                <div class="review-card">
+                    <div class="review-score-bar">
+                        <div class="score-pair">
+                            <div class="score-pair-item">
+                                <span class="score-sub-label">Extension</span>
+                                <span class="score-big">49<span style="font-size:1rem;opacity:0.5;">/50</span></span>
+                            </div>
+                            <div class="score-pair-divider"></div>
+                            <div class="score-pair-item">
+                                <span class="score-sub-label">Continuers</span>
+                                <span class="score-big">97<span style="font-size:1rem;opacity:0.5;">/100</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        <p class="review-text">"For continuers, my overall mark was 97. For extension, both external and internal marks were 49. My ATAR was 99.90, and I think Latin was definitely a huge contributor to that. Thank you so much for your help the past 3 years!"</p>
+                        <div class="review-author">
+                            <div class="review-avatar" style="background: var(--ochre); color: var(--dark-slate);">H</div>
+                            <div>
+                                <div class="review-name">HSC Graduate</div>
+                                <div class="review-meta">2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom row -->
+            <div class="review-grid review-grid-bottom">
+
+                <!-- 4. Jono -->
+                <div class="review-card">
+                    <div class="review-score-bar">
+                        <div class="score-pair">
+                            <div class="score-pair-item">
+                                <span class="score-sub-label">Extension</span>
+                                <span class="score-big">48<span style="font-size:1rem;opacity:0.5;">/50</span></span>
+                            </div>
+                            <div class="score-pair-divider"></div>
+                            <div class="score-pair-item">
+                                <span class="score-sub-label">Continuers</span>
+                                <span class="score-big">90<span style="font-size:1rem;opacity:0.5;">/100</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        <p class="review-text">"I did significantly better in Extension, obtaining a mark of 48/50 — it actually ended up counting too, so I'm glad I pushed through with it. I'd like to thank you once again for all the help in the last couple of years. Even those last few lessons where we worked on unseens really helped, and I'm sure those were half the reason I did end up getting a B6 for Continuers."</p>
+                        <div class="review-author">
+                            <div class="review-avatar" style="background: var(--sage);">J</div>
+                            <div>
+                                <div class="review-name">Jono</div>
+                                <div class="review-meta">Sydney Grammar, HSC 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Kathie — anonymous -->
+                <div class="review-card review-card-plain">
+                    <p class="review-text">"Very very very great. Very very helpful. Considering I joined last year basically, thank you for helping me improve my marks — because honestly I think I would have dropped Latin without this class. But yeah, thank you."</p>
+                    <div class="review-author">
+                        <div class="review-avatar" style="background: var(--terracotta);">K</div>
+                        <div>
+                            <div class="review-name">HSC Graduate</div>
+                            <div class="review-meta">2025</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Tawrence — anonymous -->
+                <div class="review-card review-card-plain">
+                    <p class="review-text">"We just got the annual report from school. Amongst all subjects, his maths and Latin are really standing out from the teacher comments and class rank. We appreciate your refined tutoring through the year and look forward to seeing you next year."</p>
+                    <div class="review-author">
+                        <div class="review-avatar" style="background: var(--sage);">P</div>
+                        <div>
+                            <div class="review-name">Parent</div>
+                            <div class="review-meta">Year 7, Sydney Grammar</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="text-align:center; margin-top: 3rem;">
+                <a href="reviews.html" class="btn btn-secondary">Read All Reviews</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="join">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Latin Grades?</h2>
+            <p>Join hundreds of students who've discovered that Latin doesn't have to be overwhelming. Start your journey with Bridge Languages today.</p>
+            <a href="get-started.html" class="btn btn-primary">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section" id="contact-form">
+        <div class="container">
+            <div class="section-header">
+                <h2>Book Your First Class</h2>
+                <p>Tell us a bit about yourself and we'll reach out to schedule a time that works for you</p>
+            </div>
+            <div class="form-wrapper">
+                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="student-name">Student Name *</label>
+                            <input type="text" id="student-name" name="student-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="grade">Current Grade *</label>
+                            <select id="grade" name="grade" required>
+                                <option value="">Select grade</option>
+                                <option value="9">9th Grade</option>
+                                <option value="10">10th Grade</option>
+                                <option value="11">11th Grade</option>
+                                <option value="12">12th Grade</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parent-name">Parent/Guardian Name *</label>
+                            <input type="text" id="parent-name" name="parent-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="latin-level">Latin Level *</label>
+                            <select id="latin-level" name="latin-level" required>
+                                <option value="">Select level</option>
+                                <option value="latin-1">Latin I</option>
+                                <option value="latin-2">Latin II</option>
+                                <option value="latin-3">Latin III</option>
+                                <option value="latin-4">Latin IV / AP</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="availability">When are you typically available? *</label>
+                        <textarea id="availability" name="availability" rows="3" placeholder="e.g., Weekday evenings after 4pm, Saturday mornings..." required></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="goals">What would you like help with? (Optional)</label>
+                        <textarea id="goals" name="goals" rows="3" placeholder="e.g., Grammar struggles, vocabulary retention, test prep..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Bridge Languages. All rights reserved.</p>
+            <p>Questions? <a href="/cdn-cgi/l/email-protection#1970777f76597b6b707d7e7c7578777e6c787e7c6a377a7674"><span class="__cf_email__" data-cfemail="cba2a5ada48ba9b9a2afacaea7aaa5acbeaaacaeb8e5a8a4a6">[email&#160;protected]</span></a></p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to nav
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const currentScroll = window.pageYOff

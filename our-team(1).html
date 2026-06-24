@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team | Bridge Languages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FBF8F3;
+            --dark-slate: #2C3539;
+            --terracotta: #D4745E;
+            --sage: #A8B5A0;
+            --ochre: #E8A963;
+            --warm-gray: #8B8578;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--cream);
+            color: var(--dark-slate);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(251, 248, 243, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 133, 120, 0.15);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-slate);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--terracotta);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: var(--dark-slate);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--terracotta);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--terracotta);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--dark-slate);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-toggle::before {
+            content: '▾';
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .dropdown:hover .dropdown-toggle {
+            color: var(--terracotta);
+        }
+
+        .dropdown:hover .dropdown-toggle::before {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(44, 53, 57, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 180px;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--dark-slate);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--cream);
+            color: var(--terracotta);
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            margin-top: 80px;
+            padding: 5rem 5% 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f1ec 0%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 116, 94, 0.06), transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, 0) rotate(0deg); }
+            50% { transform: translate(-50%, 30px) rotate(5deg); }
+        }
+
+        .page-hero .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--dark-slate);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            color: var(--warm-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            gap: 4rem;
+        }
+
+        .tutor-card {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out backwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tutor-card:nth-child(1) { animation-delay: 0.1s; }
+        .tutor-card:nth-child(2) { animation-delay: 0.2s; }
+        .tutor-card:nth-child(3) { animation-delay: 0.3s; }
+        .tutor-card:nth-child(4) { animation-delay: 0.4s; }
+        .tutor-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .tutor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(44, 53, 57, 0.1);
+        }
+
+        .tutor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--terracotta), var(--ochre));
+        }
+
+        .tutor-image {
+            position: relative;
+        }
+
+        .tutor-avatar {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--sage), var(--ochre));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 10px 30px rgba(44, 53, 57, 0.15);
+        }
+
+        .tutor-school {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            box-shadow: 0 4px 15px rgba(44, 53, 57, 0.1);
+            white-space: nowrap;
+        }
+
+        .tutor-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .tutor-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark-slate);
+            margin-bottom: 0.5rem;
+        }
+
+        .achievements {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--dark-slate);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .achievement-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--terracotta);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .tutor-bio {
+            color: var(--warm-gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(139, 133, 120, 0.15);
+        }
+
+        .education {
+            background: white;
+            padding: 1.25rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: var(--dark-slate);
+            font-weight: 500;
+            border-left: 3px solid var(--sage);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--dark-slate) 0%, #3a4448 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -25%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 116, 94, 0.15), transparent 70%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Karla', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--terracotta);
+            color: white;
+            box-shadow: 0 4px 20px rgba(212, 116, 94, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #c26651;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(212, 116, 94, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--dark-slate);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        footer .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            color: var(--terracotta);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .tutor-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .tutor-avatar {
+                max-width: 280px;
+                margin: 0 auto;
+            }
+
+            .tutor-school {
+                bottom: -15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+
+            .tutor-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .tutor-header h2 {
+                font-size: 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="bridge-languages.html" class="logo">Bridge <span>Languages</span></a>
+            <ul>
+                <li><a href="bridge-languages.html#features">Features</a></li>
+                <li><a href="our-team.html">Our Team</a></li>
+                <li class="dropdown">
+                    <span class="dropdown-toggle">Results</span>
+                    <div class="dropdown-menu">
+                        <a href="hsc-results.html">HSC Results</a>
+                        <a href="school-results.html">School Results</a>
+                    </div>
+                </li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="bridge-languages.html#contact-form">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Meet Our Expert Tutors</h1>
+            <p>Learn from state-ranked scholars, olympiad medalists, and Oxford-educated classicists who are passionate about sharing their love of Latin</p>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="team-container">
+            <div class="team-grid">
+                
+                <!-- Anthony -->
+                <div class="tutor-card">
+                    <div class="tutor-image">
+                        <div class="tutor-avatar">A</div>
+                        <div class="tutor-school">Shore School</div>
+                    </div>
+                    <div class="tutor-content">
+                        <div class="tutor-header">
+                            <h2>Anthony</h2>
+                        </div>
+                        <div class="achievements">
+                            <div class="achievement">
+                                <span class="achievement-icon">🏆</span>
+                                <span>State Rank 5th - Latin Extension</span>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">🎓</span>
+                                <span>Former Shore School Linguistics Coach</span>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">🥉</span>
+                                <span>International Linguistics Olympiad, Bronze Medal</span>
+                            </div>
+                        </div>
+                        <div class="education">
+                            Bachelor of Science and Advanced Studies (Computer Science and Mathematics), University of Sydney
+                        </div>
+                        <p class="tutor-bio">Anthony is passionate about helping students uncover their linguistic potential in the most enjoyable manner through a strong focus on mastering fundamentals and nurturing an intrinsic motivation to problem solve.</p>
+                    </div>
+                </div>
+
+                <!-- Harris -->
+                <div class="tutor-card">
+                    <div class="tutor-image">
+                        <div class="tutor-avatar">H</div>
+                    </div>
+                    <div class="tutor-content">
+                        <div class="tutor-header">
+                            <h2>Harris</h2>
+                        </div>
+                        <div class="achievements">
+                            <div class="achievement">
+                                <span class="achievement-icon">🎓</span>
+                                <span>PhD Student in Classics, University of Oxford</span>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">📚</span>
+                                <span>Undergraduate Classics Tutor at Oxford</span>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">🌏</span>
+                                <span>Masters in Latin and Greek Languages (Oxford)</span>
+                            </div>
+                        </div>
+                        <div class="education">
+                            Bachelor Honours in Classics with Proficiency in Japanese (University of Exeter) • Masters in Latin and Greek Languages (University of Oxford)
+                        </div>
+                        <p class="tutor-bio">With outstanding knowledge of the Latin language, Roman history and culture, Harris is keen to share their knowledge of and passion for Latin with students of all ages, and inspire the next generation of Latinists.</p>
+                    </div>
+                </div>
+
+                <!-- Jasmine -->
+                <div class="tutor-card">
+                    <div class="tutor-image">
+                        <div class="tutor-avatar">J</div>
+                        <div class="tutor-school">Pymble Ladies</div>
+                    </div>
+                    <div class="tutor-content">
+                        <div class="tutor-header">
+                            <h2>Jasmine</h2>
+                        </div>
+                        <div class="achievements">
+                            <div class="achievement">
+                                <span class="achievement-icon">🏆</span>
+                                <span>State Rank 3rd - Latin Continuers</span>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">🏆</span>
+                                <span>State Rank 9th - Latin Extension</span>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">🥉</span>
+                                <span>Australian Computational and Linguistics Olympiad (OzCLO), 3rd in Australia</span>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">💎</span>
+                                <span>Barton Scholarship for Tertiary Studies in Classical Languages</span>
+                            </div>
+                        </div>
+                        <div class="education">
+                            Bachelor of Science (Physics) and Bachelor of Arts (Majoring in Latin), Dalyell Scholar, University of Sydney
+                        </div>
+                        <p class="tutor-bio">Jasmine brings her exceptional achievements in both Latin and linguistics to create engaging, effective lessons that help students excel in their studies while developing a deeper appreciation for classical languages.</p>
+                    </div>
+                </div>
+
+                <!-- Thyra -->
+                <div class="tutor-card">
+                    <div class="tutor-image">
+                        <div class="tutor-avatar">T</div>
+                    </div>
+                    <div class="tutor-content">
+                        <div class="tutor-header">
+                            <h2>Thyra</h2>
+                        </div>
+                        <div class="achievements">
+                            <div class="achievement">
+                                <span class="achievement-icon">🎓</span>
+                                <span>PhD Candidate in Classical Languages and Literature, Oxford</span>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">📚</span>
+                                <span>Undergraduate Classics Tutor at University of Oxford</span>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">✍️</span>
+                                <span>Published in respected academic journals</span>
+                            </div>
+                        </div>
+                        <div class="education">
+                            Currently pursuing PhD in Classical Languages and Literature at the University of Oxford
+                        </div>
+                        <p class="tutor-bio">Thyra brings cutting-edge classical scholarship from Oxford to high school students, making complex Latin concepts accessible while maintaining academic rigor and fostering genuine intellectual curiosity.</p>
+                    </div>
+                </div>
+
+                <!-- Olivia -->
+                <div class="tutor-card">
+                    <div class="tutor-image">
+                        <div class="tutor-avatar">O</div>
+                        <div class="tutor-school">Abbotsleigh</div>
+                    </div>
+                    <div class="tutor-content">
+                        <div class="tutor-header">
+                            <h2>Olivia</h2>
+                        </div>
+                        <div class="achievements">
+                            <div class="achievement">
+                                <span class="achievement-icon">🥇</span>
+                                <span>1st in NSW Latin Extension</span>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">🥉</span>
+                                <span>3rd in NSW Latin Continuers</span>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">🎯</span>
+                                <span>Top Latin Extension student in the state</span>
+                            </div>
+                        </div>
+                        <div class="education">
+                            Bachelor of Science / Doctor of Medicine (Minoring in Latin), The University of Sydney
+                        </div>
+                        <p class="tutor-bio">Graduating as the top Latin Extension student in the state, Olivia is an accomplished and friendly tutor who is passionate about helping students overcome any difficulties and thrive as Latinists. She is dedicated to ensuring students enjoy their Latin as much as possible by tailoring her lessons to their interests.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Learn from the Best</h2>
+            <p>Join our online classes and work with tutors who've achieved the highest honors in Latin and are dedicated to your success.</p>
+            <a href="bridge-languages.html#contact-form" class="btn btn-primary">Book Your First Class</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Bridge Languages. All rights reserved.</p>
+            <p>Questions? <a href="/cdn-cgi/l/email-protection#066f6860694664746f6261636a67686173676163752865696b"><span class="__cf_email__" data-cfemail="89e0e7efe6c9ebfbe0edeeece5e8e7eefce8eeecfaa7eae6e4">[email&#160;protected]</span></a></p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.que

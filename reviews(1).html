@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Reviews | Bridge Languages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FBF8F3;
+            --dark-slate: #2C3539;
+            --terracotta: #D4745E;
+            --sage: #A8B5A0;
+            --ochre: #E8A963;
+            --warm-gray: #8B8578;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--cream);
+            color: var(--dark-slate);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Nav — identical to homepage */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(251, 248, 243, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 133, 120, 0.15);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-slate);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--terracotta); }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--dark-slate);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover { color: var(--terracotta); }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--terracotta);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after { width: 100%; }
+
+        .dropdown { position: relative; }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-toggle::before {
+            content: '▾';
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .dropdown:hover .dropdown-toggle::before { transform: rotate(180deg); }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(44, 53, 57, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 180px;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--dark-slate);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .dropdown-menu a:first-child { border-radius: 8px 8px 0 0; }
+        .dropdown-menu a:last-child { border-radius: 0 0 8px 8px; }
+        .dropdown-menu a:hover { background: var(--cream); color: var(--terracotta); }
+        .dropdown-menu a::after { display: none; }
+
+        /* Page hero */
+        .page-hero {
+            margin-top: 80px;
+            padding: 5rem 5% 4rem;
+            background: var(--dark-slate);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 116, 94, 0.12), transparent 70%);
+        }
+
+        .page-hero .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero-tag {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--terracotta);
+            margin-bottom: 1rem;
+        }
+
+        .page-hero h1 {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1.25rem;
+        }
+
+        .page-hero h1 span { color: var(--ochre); font-style: italic; }
+
+        .page-hero p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.65);
+            max-width: 540px;
+            line-height: 1.7;
+        }
+
+        /* Stats strip */
+        .stats-strip {
+            background: white;
+            border-bottom: 1px solid rgba(139, 133, 120, 0.12);
+        }
+
+        .stats-strip .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .strip-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .strip-stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--terracotta);
+            line-height: 1;
+        }
+
+        .strip-stat-label {
+            font-size: 0.8rem;
+            color: var(--warm-gray);
+        }
+
+        .strip-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(139, 133, 120, 0.2);
+        }
+
+        /* Main content */
+        .reviews-page {
+            padding: 5rem 5%;
+        }
+
+        .reviews-page .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Section label */
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--terracotta);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(139, 133, 120, 0.2);
+        }
+
+        /* Score-led grid */
+        .review-grid-top {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .review-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(139, 133, 120, 0.15);
+            background: white;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(44, 53, 57, 0.1);
+        }
+
+        .review-score-bar {
+            background: var(--dark-slate);
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .score-main {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .score-big {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--ochre);
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .score-sub {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+        }
+
+        .score-sub-label {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .score-sub-val {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--sage);
+        }
+
+        .score-pair {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .score-pair-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .score-pair-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(255,255,255,0.12);
+        }
+
+        .score-badge {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.4);
+            text-align: right;
+            max-width: 80px;
+            line-height: 1.4;
+        }
+
+        .review-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+            gap: 1.25rem;
+        }
+
+        /* Quote-led grid */
+        .review-grid-bottom {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .review-card-plain {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid rgba(139, 133, 120, 0.15);
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.25rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .review-card-plain:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(44, 53, 57, 0.1);
+        }
+
+        .review-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--dark-slate);
+            font-style: italic;
+            margin: 0;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .review-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .review-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--dark-slate);
+        }
+
+        .review-meta {
+            font-size: 0.82rem;
+            color: var(--warm-gray);
+        }
+
+        /* CTA banner */
+        .cta-banner {
+            background: var(--dark-slate);
+            border-radius: 20px;
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 116, 94, 0.15), transparent 70%);
+        }
+
+        .cta-banner h2 {
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Karla', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: var(--terracotta);
+            color: white;
+            box-shadow: 0 4px 20px rgba(212, 116, 94, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #c26651;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(212, 116, 94, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--dark-slate);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            margin-top: 6rem;
+        }
+
+        footer .container { max-width: 1400px; margin: 0 auto; }
+        footer p { margin-bottom: 1rem; }
+        footer a { color: var(--terracotta); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .review-grid-top,
+            .review-grid-bottom { grid-template-columns: 1fr; }
+            .page-hero h1 { font-size: 2.8rem; }
+            .stats-strip .container { flex-wrap: wrap; gap: 1.5rem; }
+            .strip-divider { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .page-hero h1 { font-size: 2.2rem; }
+            .cta-banner { padding: 2.5rem 1.5rem; }
+            .cta-banner h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <a href="bridge-languages.html" class="logo">Bridge <span>Languages</span></a>
+            <ul>
+                <li><a href="bridge-languages.html">Home</a></li>
+                <li><a href="our-team.html">Our Team</a></li>
+                <li class="dropdown">
+                    <span class="dropdown-toggle">Results</span>
+                    <div class="dropdown-menu">
+                        <a href="hsc-results.html">HSC Results</a>
+                        <a href="school-results.html">School Results</a>
+                    </div>
+                </li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="bridge-languages.html#contact-form">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <p class="page-hero-tag">Student Reviews</p>
+            <h1>Results that speak <span>for themselves</span></h1>
+            <p>These are the unedited words of our students and their families — sent directly to Anthony after results came in.</p>
+        </div>
+    </section>
+
+    <div class="stats-strip">
+        <div class="container">
+            <div class="strip-stat">
+                <span class="strip-stat-num">99.90</span>
+                <span class="strip-stat-label">Highest student ATAR</span>
+            </div>
+            <div class="strip-divider"></div>
+            <div class="strip-stat">
+                <span class="strip-stat-num">12.5%</span>
+                <span class="strip-stat-label">All NSW top band results</span>
+            </div>
+            <div class="strip-divider"></div>
+            <div class="strip-stat">
+                <span class="strip-stat-num">96</span>
+                <span class="strip-stat-label">Median Continuers mark</span>
+            </div>
+            <div class="strip-divider"></div>
+            <div class="strip-stat">
+                <span class="strip-stat-num">48</span>
+                <span class="strip-stat-label">Median Extension mark</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="reviews-page">
+        <div class="container">
+
+            <div class="section-label">HSC graduates — with scores</div>
+
+            <div class="review-grid-top">
+
+                <div class="review-card">
+                    <div class="review-score-bar">
+                        <div class="score-main">
+                            <span class="score-big">99.90</span>
+                            <span class="score-label">ATAR</span>
+                        </div>
+                        <div class="score-sub">
+                            <span class="score-sub-label">Continuers</span>
+                            <span class="score-sub-val">97 / 100</span>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        <p class="review-text">"For continuers, my overall mark was 97. For extension, both external and internal marks were 49. My ATAR was 99.90, and I think Latin was definitely a huge contributor to that. Thank you so much for your help the past 3 years!"</p>
+                        <div class="review-author">
+                            <div class="review-avatar" style="background: var(--ochre); color: var(--dark-slate);">H</div>
+                            <div>
+                                <div class="review-name">Hannah</div>
+                                <div class="review-meta">HSC Graduate, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-score-bar">
+                        <div class="score-pair">
+                            <div class="score-pair-item">
+                                <span class="score-sub-label">Continuers</span>
+                                <span class="score-big">96<span style="font-size:1rem;opacity:0.5;">/100</span></span>
+                            </div>
+                            <div class="score-pair-divider"></div>
+                            <div class="score-pair-item">
+                                <span class="score-sub-label">Extension</span>
+                                <span class="score-big">49<span style="font-size:1rem;opacity:0.5;">/50</span></span>
+                            </div>
+                        </div>
+                        <div class="score-badge">Highest external mark</div>
+                    </div>
+                    <div class="review-body">
+                        <p class="review-text">"I thought I wouldn't do too well because I messed up some internal assessments — but for Latin Extension I received 49/50 for both internal and external, and for Latin Continuers I scored 96/100. I scored the highest external mark, 97/100, so that really helped me recover. Thanks again for helping me with Latin for the past 6 years."</p>
+                        <div class="review-author">
+                            <div class="review-avatar" style="background: var(--terracotta);">S</div>
+                            <div>
+                                <div class="review-name">Sophie Y.</div>
+                                <div class="review-meta">Meriden School, HSC 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-score-bar">
+                        <div class="score-main">
+                            <span class="score-big">99.85</span>
+                            <span class="score-label">ATAR</span>
+                        </div>
+                        <div class="score-sub">
+                            <span class="score-sub-label">Extension</span>
+                            <span class="score-sub-val">48 / 50</span>
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        <p class="review-text">"I did significantly better in Extension, obtaining a mark of 48/50 — it actually ended up counting too, so I'm glad I pushed through with it. I'd like to thank you once again for all the help in the last couple of years. Even those last few lessons where we worked on unseens really helped, and I'm sure those were half the reason I did end up getting a B6 for Continuers."</p>
+                        <div class="review-author">
+                            <div class="review-avatar" style="background: var(--sage);">J</div>
+                            <div>
+                                <div class="review-name">Jono</div>
+                                <div class="review-meta">Sydney Grammar, HSC 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section-label">More from our students &amp; families</div>
+
+            <div class="review-grid-bottom">
+
+                <div class="review-card-plain">
+                    <p class="review-text">"Very very very great. Very very helpful. Considering I joined last year basically, thank you for helping me improve my marks — because honestly I think I would have dropped Latin without this class. But yeah, thank you."</p>
+                    <div class="review-author">
+                        <div class="review-avatar" style="background: var(--terracotta);">K</div>
+                        <div>
+                            <div class="review-name">Kathie</div>
+                            <div class="review-meta">HSC Graduate, 2025</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card-plain">
+                    <p class="review-text">"In just my short time with him, I have found Anthony to be of great character and an excellent tutor — a good laugh during classes, always ensuring straight faces do not last long. Explanations are clear, quick and concise, resulting in minimal confusion. Lesson pace is very ideal. For the present, and very probably for the decently far future, I cannot think of a thing I would change about Anthony's classes."</p>
+                    <div class="review-author">
+                        <div class="review-avatar" style="background: var(--dark-slate);">A</div>
+                        <div>
+                            <div class="review-name">Aaron</div>
+                            <div class="review-meta">HSC 2025 — 96 Continuers, 48 Extension</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card-plain">
+                    <p class="review-text">"We just got the annual report from school. Amongst all subjects, his maths and Latin are really standing out from the teacher comments and class rank. We appreciate your refined tutoring through the year and look forward to seeing you next year."</p>
+                    <div class="review-author">
+                        <div class="review-avatar" style="background: var(--sage);">T</div>
+                        <div>
+                            <div class="review-name">Tawrence's parent</div>
+                            <div class="review-meta">Year 7, Sydney Grammar</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="cta-banner">
+                <h2>Ready to write your own success story?</h2>
+                <p>Join the students who've achieved top band results with Bridge Languages.</p>
+                <a href="bridge-languages.html#contact-form" class="btn btn-primary">Book Your First Class</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Bridge Languages. All rights reserved.</p>
+            <p>Questions? <a href="mailto:hello@bridgelanguages.com.au">hello@bridgelanguages.com.au</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

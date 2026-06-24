@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSC Results 2025 | Bridge Languages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FBF8F3;
+            --dark-slate: #2C3539;
+            --terracotta: #D4745E;
+            --sage: #A8B5A0;
+            --ochre: #E8A963;
+            --warm-gray: #8B8578;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--cream);
+            color: var(--dark-slate);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(251, 248, 243, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 133, 120, 0.15);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-slate);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--terracotta);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: var(--dark-slate);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--terracotta);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--terracotta);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--dark-slate);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-toggle::before {
+            content: '▾';
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .dropdown:hover .dropdown-toggle {
+            color: var(--terracotta);
+        }
+
+        .dropdown:hover .dropdown-toggle::before {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(44, 53, 57, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 180px;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--dark-slate);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--cream);
+            color: var(--terracotta);
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            margin-top: 80px;
+            padding: 5rem 5% 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f1ec 0%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 116, 94, 0.06), transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, 0) rotate(0deg); }
+            50% { transform: translate(-50%, 30px) rotate(5deg); }
+        }
+
+        .page-hero .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--dark-slate);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .page-hero h1 span {
+            color: var(--terracotta);
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            color: var(--warm-gray);
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Key Stats Section */
+        .key-stats {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .key-stats .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--cream);
+            border-radius: 20px;
+            border-left: 4px solid var(--terracotta);
+            animation: fadeInUp 0.8s ease-out backwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(44, 53, 57, 0.1);
+        }
+
+        .stat-card .number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: var(--terracotta);
+            display: block;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .stat-card .label {
+            font-size: 1.1rem;
+            color: var(--dark-slate);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .description {
+            font-size: 0.9rem;
+            color: var(--warm-gray);
+        }
+
+        .achievement-banner {
+            background: linear-gradient(135deg, var(--dark-slate), #3a4448);
+            padding: 2.5rem 3rem;
+            border-radius: 16px;
+            text-align: center;
+            color: white;
+            margin-top: 3rem;
+        }
+
+        .achievement-banner h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Highlights Section */
+        .highlights {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #f5f1ec 0%, var(--cream) 100%);
+        }
+
+        .highlights .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-slate);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--warm-gray);
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--ochre);
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .highlight-card:nth-child(1) { animation-delay: 0.1s; }
+        .highlight-card:nth-child(2) { animation-delay: 0.2s; }
+
+        .highlight-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark-slate);
+        }
+
+        .highlight-card .student-name {
+            font-weight: 600;
+            color: var(--terracotta);
+            font-size: 1.1rem;
+        }
+
+        .highlight-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .highlight-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--warm-gray);
+        }
+
+        .highlight-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--ochre);
+            font-weight: 700;
+        }
+
+        /* Results Tables */
+        .results-tables {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .results-tables .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .table-wrapper {
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .table-wrapper:nth-child(2) { animation-delay: 0.1s; }
+        .table-wrapper:nth-child(3) { animation-delay: 0.2s; }
+        .table-wrapper:nth-child(4) { animation-delay: 0.3s; }
+        .table-wrapper:nth-child(5) { animation-delay: 0.4s; }
+
+        .table-header {
+            background: var(--terracotta);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px 12px 0 0;
+            font-size: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            box-shadow: 0 4px 20px rgba(44, 53, 57, 0.08);
+            border-radius: 0 0 12px 12px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: #F9EBE7;
+        }
+
+        th {
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark-slate);
+            border-bottom: 2px solid var(--terracotta);
+        }
+
+        td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(139, 133, 120, 0.1);
+            color: var(--dark-slate);
+        }
+
+        tbody tr:hover {
+            background: rgba(212, 116, 94, 0.03);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .subject-extension {
+            color: var(--terracotta);
+            font-weight: 600;
+        }
+
+        .subject-continuers {
+            color: var(--ochre);
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--dark-slate) 0%, #3a4448 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -25%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 116, 94, 0.15), transparent 70%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Karla', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--terracotta);
+            color: white;
+            box-shadow: 0 4px 20px rgba(212, 116, 94, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #c26651;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(212, 116, 94, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--dark-slate);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        footer .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            color: var(--terracotta);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stat-card .number {
+                font-size: 3.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .table-wrapper {
+                overflow-x: auto;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.75rem 1rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="bridge-languages.html" class="logo">Bridge <span>Languages</span></a>
+            <ul>
+                <li><a href="bridge-languages.html#features">Features</a></li>
+                <li><a href="our-team.html">Our Team</a></li>
+                <li class="dropdown">
+                    <span class="dropdown-toggle">Results</span>
+                    <div class="dropdown-menu">
+                        <a href="hsc-results.html">HSC Results</a>
+                        <a href="school-results.html">School Results</a>
+                    </div>
+                </li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="bridge-languages.html#contact-form">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Student Results in <span>2025 HSC</span></h1>
+            <p>Exceptional results from students who chose to learn with Bridge Languages</p>
+        </div>
+    </section>
+
+    <!-- Key Stats -->
+    <section class="key-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="number" data-target="96">0</span>
+                    <p class="label">Median Latin Continuers</p>
+                    <p class="description">91% Band 6 Rate</p>
+                </div>
+                <div class="stat-card">
+                    <span class="number" data-target="48">0</span>
+                    <p class="label">Median Latin Extension</p>
+                    <p class="description">89% E4 Rate</p>
+                </div>
+                <div class="stat-card">
+                    <span class="number" data-target="99.75">0</span>
+                    <p class="label">Median ATAR</p>
+                    <p class="description">Across all students</p>
+                </div>
+            </div>
+            
+            <div class="achievement-banner">
+                <h3>12.5% of All Top Band Results in NSW</h3>
+                <p>Bridge Languages students achieved 12.5% of all Band 6s in Latin Continuers and 12.5% of all E4s in Latin Extension statewide</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights -->
+    <section class="highlights">
+        <div class="container">
+            <div class="section-header">
+                <h2>Special Congratulations</h2>
+                <p>Celebrating our top-performing students</p>
+            </div>
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <h3><span class="student-name">Olivia Zhou</span></h3>
+                    <ul>
+                        <li>1st in NSW, Latin Extension</li>
+                        <li>3rd in NSW, Latin Continuers</li>
+                        <li>ATAR: 99.95</li>
+                        <li>School: Abbotsleigh</li>
+                    </ul>
+                </div>
+                <div class="highlight-card">
+                    <h3><span class="student-name">Sophia Chen</span></h3>
+                    <ul>
+                        <li>Top 7 in NSW, Latin Extension</li>
+                        <li>Latin Extension: 50/50</li>
+                        <li>ATAR: 99.95</li>
+                        <li>School: PLC (Pymble)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Tables -->
+    <section class="results-tables">
+        <div class="container">
+            <div class="section-header">
+                <h2>Detailed Results</h2>
+                <p>Complete breakdown of our students' 2025 HSC performance</p>
+            </div>
+
+            <!-- Latin Extension Table -->
+            <div class="table-wrapper">
+                <div class="table-header">Latin Extension 2025</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>School</th>
+                            <th>Mark</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Olivia Z.</td>
+                            <td>Abbotsleigh</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Sophia C.</td>
+                            <td>PLC (Pymble)</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Hannah L.</td>
+                            <td>James Ruse</td>
+                            <td>49</td>
+                        </tr>
+                        <tr>
+                            <td>Sophie Y.</td>
+                            <td>Meriden</td>
+                            <td>49</td>
+                        </tr>
+                        <tr>
+                            <td>Aaron L.</td>
+                            <td>SHORE</td>
+                            <td>48</td>
+                        </tr>
+                        <tr>
+                            <td>Name Withheld</td>
+                            <td>School Withheld</td>
+                            <td>48</td>
+                        </tr>
+                        <tr>
+                            <td>Lena Z.</td>
+                            <td>Meriden</td>
+                            <td>47</td>
+                        </tr>
+                        <tr>
+                            <td>Marissa Z.</td>
+                            <td>PLC (Pymble)</td>
+                            <td>47</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Latin Continuers Table -->
+            <div class="table-wrapper">
+                <div class="table-header">Latin Continuers 2025</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>School</th>
+                            <th>Mark</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Olivia Z.</td>
+                            <td>Abbotsleigh</td>
+                            <td>99</td>
+                        </tr>
+                        <tr>
+                            <td>Sophia C.</td>
+                            <td>PLC (Pymble)</td>
+                            <td>97</td>
+                        </tr>
+                        <tr>
+                            <td>Hannah L.</td>
+                            <td>James Ruse</td>
+                            <td>97</td>
+                        </tr>
+                        <tr>
+                            <td>Sophie Y.</td>
+                            <td>Meriden</td>
+                            <td>96</td>
+                        </tr>
+                        <tr>
+                            <td>Aaron L.</td>
+                            <td>SHORE</td>
+                            <td>96</td>
+                        </tr>
+                        <tr>
+                            <td>Name Withheld</td>
+                            <td>School Withheld</td>
+                            <td>96</td>
+                        </tr>
+                        <tr>
+                            <td>Isabella P.</td>
+                            <td>James Ruse</td>
+                            <td>95</td>
+                        </tr>
+                        <tr>
+                            <td>Lena Z.</td>
+                            <td>Meriden</td>
+                            <td>95</td>
+                        </tr>
+                        <tr>
+                            <td>Marissa Z.</td>
+                            <td>PLC (Pymble)</td>
+                            <td>91</td>
+                        </tr>
+                        <tr>
+                            <td>Nicole M.</td>
+                            <td>Hills Grammar</td>
+                            <td>91</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ATAR Table -->
+            <div class="table-wrapper">
+                <div class="table-header">ATAR 2025</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>School</th>
+                            <th>ATAR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Olivia Z.</td>
+                            <td>Abbotsleigh</td>
+                            <td>99.95</td>
+                        </tr>
+                        <tr>
+                            <td>Sophia C.</td>
+                            <td>PLC (Pymble)</td>
+                            <td>99.95</td>
+                        </tr>
+                        <tr>
+                            <td>Name Withheld</td>
+                            <td>School Withheld</td>
+                            <td>99.95</td>
+                        </tr>
+                        <tr>
+                            <td>Hannah L.</td>
+                            <td>James Ruse</td>
+                            <td>99.9</td>
+                        </tr>
+                        <tr>
+                            <td>Sophie Y.</td>
+                            <td>Meriden</td>
+                            <td>99.8</td>
+                        </tr>
+                        <tr>
+                            <td>Isabella P.</td>
+                            <td>James Ruse</td>
+                            <td>99.75</td>
+                        </tr>
+                        <tr>
+                            <td>Name Withheld</td>
+                            <td>School Withheld</td>
+                            <td>99+</td>
+                        </tr>
+                        <tr>
+                            <td>Marissa Z.</td>
+                            <td>PLC (Pymble)</td>
+                            <td>99.20</td>
+                        </tr>
+                        <tr>
+                            <td>Aaron L.</td>
+                            <td>SHORE</td>
+                            <td>99.15</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Internal Rankings Table -->
+            <div class="table-wrapper">
+                <div class="table-header">Internal HSC Results 2025</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Student</th>
+                            <th>School</th>
+                            <th>Subject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Olivia Z.</td>
+                            <td>Abbotsleigh</td>
+                            <td class="subject-extension">Latin Extension</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Sophie Y.</td>
+                            <td>Meriden</td>
+                            <td class="subject-extension">Latin Extension</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Name Withheld</td>
+                            <td>School Withheld</td>
+                            <td class="subject-extension">Latin Extension</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Nicole M.</td>
+                            <td>Hills Grammar</td>
+                            <td class="subject-continuers">Latin Continuers</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Hannah L.</td>
+                            <td>James Ruse</td>
+                            <td class="subject-continuers">Latin Continuers</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Sophia C.</td>
+                            <td>PLC (Pymble)</td>
+                            <td class="subject-extension">Latin Extension</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Hannah L.</td>
+                            <td>James Ruse</td>
+                            <td class="subject-extension">Latin Extension</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Name Withheld</td>
+                            <td>School Withheld</td>
+                            <td class="subject-continuers">Latin Continuers</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Olivia Z.</td>
+                            <td>Abbotsleigh</td>
+                            <td class="subject-continuers">Latin Continuers</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Sophia C.</td>
+                            <td>PLC (Pymble)</td>
+                            <td class="subject-continuers">Latin Continuers</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Join Our High-Achieving Classes</h2>
+            <p>Make Latin simple. Book your place in our next cohort and experience the Bridge Languages difference.</p>
+            <a href="bridge-languages.html#contact-form" class="btn btn-primary">Book Your First Class</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Bridge Languages. All rights reserved.</p>
+            <p>Questions? <a href="/cdn-cgi/l/email-protection#066f6860694664746f6261636a67686173676163752865696b"><span class="__cf_email__" data-cfemail="620b0c040d2200100b0605070e030c0517030507114c010d0f">[email&#160;protected]</span></a></p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.pageYOffset > 100) {
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Animated number counter with smoother easing
+        function animateNumber(element, target, duration = 1400, decimals = 0) {
+            const startTime = performance.now();
+            
+            // Smoother easing function - still starts fast but doesn't decelerate as much
+            function easeOutQuart(t) {
+                return 1 - Math.pow(1 - t, 3);
+            }
+            
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easedProgress = easeOutQuart(progress);
+                const current = easedProgress * target;
+                
+                if (progress < 1) {
+                    element.textContent = decimals > 0 ? current.toFixed(decimals) : Math.round(current);
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    element.textContent = decimals > 0 ? target.toFixed(decimals) : Math.round(target);
+                }
+            }
+            
+            requestAnimationFrame(updateNumber);
+        }
+
+        // Intersection Observer to trigger animation when stats come into view
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    entry.target.classList.add('animated');
+                    const numbers = entry.target.querySelectorAll('.number');
+                    
+                    // Animate each number sequentially with delays
+                    numbers.forEach((number, index) => {
+                        const delay = index * 500; // 500ms delay between each number
+                        setTimeout(() => {
+                            const target = parseFloat(number.getAttribute('data-target'));
+                            // Count decimal places in the original data-target value to preserve precision
+                            const targetString = number.getAttribute('data-target');
+                            const decimalPlaces = (targetString.split('.')[1] || '').length;
+                            animateNumber(number, target, 1400, decimalPlaces);
+                        }, delay);
+                    });
+                }
+                    });
+        }, observerOptions);
+
+        // Observe the stats section
+        const statsSection = document.querySelector('.key-stats');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+    </script>
+</body>
+</html>

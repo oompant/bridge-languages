@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | Bridge Languages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FBF8F3;
+            --dark-slate: #2C3539;
+            --terracotta: #D4745E;
+            --sage: #A8B5A0;
+            --ochre: #E8A963;
+            --warm-gray: #8B8578;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--cream);
+            color: var(--dark-slate);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(251, 248, 243, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 133, 120, 0.15);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-slate);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--terracotta);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: var(--dark-slate);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--terracotta);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--terracotta);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--dark-slate);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-toggle::before {
+            content: '▾';
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .dropdown:hover .dropdown-toggle {
+            color: var(--terracotta);
+        }
+
+        .dropdown:hover .dropdown-toggle::before {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(44, 53, 57, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 180px;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--dark-slate);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--cream);
+            color: var(--terracotta);
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            margin-top: 80px;
+            padding: 5rem 5% 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f1ec 0%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 116, 94, 0.06), transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, 0) rotate(0deg); }
+            50% { transform: translate(-50%, 30px) rotate(5deg); }
+        }
+
+        .page-hero .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--dark-slate);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .page-hero h1 span {
+            color: var(--terracotta);
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            color: var(--warm-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .faq-section .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-slate);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--warm-gray);
+        }
+
+        .faq-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--terracotta);
+            margin-bottom: 2rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--terracotta);
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.15s; }
+        .faq-item:nth-child(3) { animation-delay: 0.2s; }
+        .faq-item:nth-child(4) { animation-delay: 0.25s; }
+        .faq-item:nth-child(5) { animation-delay: 0.3s; }
+
+        .faq-question {
+            background: var(--cream);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--terracotta);
+        }
+
+        .faq-question:hover {
+            background: #f5f1ec;
+            transform: translateX(5px);
+        }
+
+        .faq-question h3 {
+            font-size: 1.25rem;
+            color: var(--dark-slate);
+            font-weight: 600;
+            margin: 0;
+            padding-right: 1rem;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--terracotta);
+            font-weight: 700;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 2rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        .faq-answer p {
+            color: var(--dark-slate);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-answer ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer li {
+            color: var(--dark-slate);
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            color: var(--terracotta);
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--dark-slate) 0%, #3a4448 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -25%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 116, 94, 0.15), transparent 70%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Karla', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--terracotta);
+            color: white;
+            box-shadow: 0 4px 20px rgba(212, 116, 94, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #c26651;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(212, 116, 94, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--dark-slate);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        footer .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            color: var(--terracotta);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .category-title {
+                font-size: 1.5rem;
+            }
+
+            .faq-question {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .faq-question h3 {
+                font-size: 1.1rem;
+            }
+
+            .faq-answer {
+                padding: 0 1.5rem;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 1.25rem 1.5rem 1.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="bridge-languages.html" class="logo">Bridge <span>Languages</span></a>
+            <ul>
+                <li><a href="bridge-languages.html#features">Features</a></li>
+                <li><a href="our-team.html">Our Team</a></li>
+                <li class="dropdown">
+                    <span class="dropdown-toggle">Results</span>
+                    <div class="dropdown-menu">
+                        <a href="hsc-results.html">HSC Results</a>
+                        <a href="school-results.html">School Results</a>
+                    </div>
+                </li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="bridge-languages.html#contact-form">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Frequently Asked <span>Questions</span></h1>
+            <p>Everything you need to know about Bridge Languages Latin tutoring</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+
+            <!-- Results & Effectiveness -->
+            <div class="faq-category">
+                <h2 class="category-title">Results & Effectiveness</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Will tutoring actually improve my child's grades?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. Our track record speaks for itself: in 2025, our students achieved a <span class="highlight">median of 96 in Latin Continuers and 48 in Latin Extension</span>, with a median ATAR of 99.6.</p>
+                        <p>We delivered 12.5% of all top band results in NSW for both Latin Continuers and Extension. Over the past 8 years, our students have received 30+ first-in-grade awards across Sydney's top schools including James Ruse, Pymble Ladies, and Hills Grammar.</p>
+                        <p>Our small group model allows tutors to identify each student's weaknesses, consolidate fundamentals, and provide targeted practice that directly translates to better marks.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long does it take to see improvement?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most students see noticeable improvements within 4-6 weeks, with significant grade improvements typically appearing by the end of the first term.</p>
+                        <p>However, this depends on where your child starts. Students who are keeping up but want to excel may see results faster, while those who need to catch up on fundamentals may take a bit longer to build confidence and see marks improve.</p>
+                        <p>The key is consistency—regular attendance and practice between sessions accelerate progress.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is my child too far behind to catch up?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No. We've successfully helped students at all levels, from those struggling with basics to those aiming for state rankings.</p>
+                        <p>Our tutors are skilled at identifying gaps in understanding and systematically filling them. We focus on building strong fundamentals first—grammar rules, vocabulary strategies, and translation techniques—before moving to more advanced work.</p>
+                        <p>Many of our highest-achieving students started with us needing significant support. With the right guidance and consistent effort, catching up is absolutely possible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tutors & Qualifications -->
+            <div class="faq-category">
+                <h2 class="category-title">Tutors & Qualifications</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What qualifications do your tutors have?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All our tutors are exceptional Latin scholars with outstanding academic achievements:</p>
+                        <ul>
+                            <li><span class="highlight">State-ranked students:</span> Multiple tutors ranked 1st-10th in NSW for Latin Extension</li>
+                            <li><span class="highlight">University credentials:</span> PhD candidates and graduates from Oxford and Sydney universities</li>
+                            <li><span class="highlight">Competition success:</span> International Linguistics Olympiad medalists and OzCLO top performers</li>
+                            <li><span class="highlight">Teaching experience:</span> Many are current or former school tutors at prestigious institutions</li>
+                        </ul>
+                        <p>Most importantly, they deeply understand the NSW HSC syllabus and know exactly what it takes to excel.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do your tutors understand the NSW syllabus?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. Our tutors are NSW HSC specialists who achieved top marks in the same system your child is studying in.</p>
+                        <p>They know the prescribed texts, understand HSC marking criteria, and are familiar with the exam format and question styles. Many of them recently completed the HSC themselves, so they know exactly what works.</p>
+                        <p>We align our teaching with school curricula while providing the depth and practice needed to excel beyond classroom learning.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Will the tutor be familiar with my child's school?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Very likely. Over 8 years, we've taught students from virtually every selective and private school in Sydney that offers Latin, including James Ruse, Pymble Ladies, Shore, Abbotsleigh, Sydney Grammar, and many more.</p>
+                        <p>Our tutors understand different schools' approaches, pacing, and assessment styles. We work complementarily with school teaching, not in competition with it.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Class Structure & Learning -->
+            <div class="faq-category">
+                <h2 class="category-title">Class Structure & Learning</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How many students are in each class?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our classes have <span class="highlight">8-12 students</span>—small enough for personalized attention, large enough for peer learning and discussion.</p>
+                        <p>This size allows tutors to:</p>
+                        <ul>
+                            <li>Notice when individual students are struggling</li>
+                            <li>Provide targeted feedback on translations and grammar</li>
+                            <li>Foster collaborative learning where students help each other</li>
+                            <li>Create a supportive environment where asking questions feels safe</li>
+                        </ul>
+                        <p>Students report feeling much more comfortable asking questions in our small groups than in large classrooms or intimidating one-on-one settings.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do you handle different ability levels in one class?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We group students by their current Latin level (Latin I, II, III, Extension) to ensure everyone is working on appropriate material.</p>
+                        <p>Within each class, our tutors use differentiated instruction—giving extension work to faster students while providing extra support to those who need it. The small group size makes this individualization possible.</p>
+                        <p>Students also learn from each other. Sometimes hearing a concept explained by a peer makes it click in a way teacher explanations don't.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Will my child feel comfortable asking questions?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. Creating a safe, encouraging environment is one of our core priorities.</p>
+                        <p>Many students feel embarrassed asking questions in their school classes. Our small groups foster a supportive atmosphere where:</p>
+                        <ul>
+                            <li>Everyone is there because they want to improve—there's no judgment</li>
+                            <li>Tutors actively encourage questions and normalize mistakes as part of learning</li>
+                            <li>Students realize their classmates have similar struggles</li>
+                            <li>The pace is flexible—we slow down if a concept needs more explanation</li>
+                        </ul>
+                        <p>Building confidence is just as important as building knowledge.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What happens during a typical session?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Each 90-minute session typically includes:</p>
+                        <ul>
+                            <li><span class="highlight">Grammar review:</span> Clarifying and consolidating key concepts (cases, conjugations, syntax)</li>
+                            <li><span class="highlight">Translation practice:</span> Working through passages together with guided support</li>
+                            <li><span class="highlight">Vocabulary strategies:</span> Effective techniques for retention and recall</li>
+                            <li><span class="highlight">Question time:</span> Addressing specific student challenges and homework questions</li>
+                            <li><span class="highlight">Exam preparation:</span> Practice with past papers and HSC-style questions</li>
+                        </ul>
+                        <p>Sessions are interactive, not lecture-based. Students actively participate, translate, and problem-solve together.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logistics & Scheduling -->
+            <div class="faq-category">
+                <h2 class="category-title">Logistics & Scheduling</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How does online learning work?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All classes are conducted via Zoom. Students need:</p>
+                        <ul>
+                            <li>A laptop or computer (tablets work but are less ideal)</li>
+                            <li>Stable internet connection</li>
+                            <li>A quiet space to focus</li>
+                        </ul>
+                        <p>Online classes offer huge advantages: no travel time, access to top tutors regardless of location, and easy screen sharing of texts and translations. Students adapt quickly and find the format just as engaging as in-person tutoring.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What if my child has to miss a session?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We understand that conflicts happen—sport, family commitments, illness, or school events.</p>
+                        <p>While regular attendance is crucial for progress, we provide session recordings so students can catch up on anything they missed. For extended absences, we can recommend additional resources or practice materials to keep students on track.</p>
+                        <p>Please contact us directly to discuss our make-up policy and options for your specific situation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How much time commitment is required outside of class?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We recommend 1-2 hours of practice per week outside of class sessions. This includes:</p>
+                        <ul>
+                            <li>Vocabulary review (15-20 minutes, several times per week)</li>
+                            <li>Practice translations</li>
+                            <li>Grammar exercises</li>
+                            <li>Reviewing session materials</li>
+                        </ul>
+                        <p>Latin is cumulative—consistent, regular practice is far more effective than cramming. Even 20 minutes of daily vocabulary review makes a huge difference.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>When should we start tutoring?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The best time to start is <span class="highlight">as soon as you notice your child struggling</span>—or even before that if you want them to get ahead.</p>
+                        <p>Many of our most successful students started early (Year 9 or 10) and built strong foundations from the beginning. However, we've also helped Year 12 students make significant improvements in their final year.</p>
+                        <p>Starting earlier gives more time to consolidate fundamentals, but it's never too late to improve.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practical Concerns -->
+            <div class="faq-category">
+                <h2 class="category-title">Pricing & Commitment</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How much does tutoring cost?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Please <a href="bridge-languages.html#contact-form" class="highlight" style="text-decoration: underline;">contact us</a> for current pricing information. We offer competitive rates for our small group classes and various package options to suit different needs and budgets.</p>
+                        <p>Our pricing reflects the exceptional quality of our tutors and our proven track record of results.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do we need to commit for the whole year?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer flexible options, though we recommend at least one term to see meaningful results. Latin progress is gradual—fundamentals take time to consolidate.</p>
+                        <p>Please contact us to discuss commitment options and what would work best for your family's situation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is there a trial period?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We're happy to discuss trial options when you reach out. We want to ensure Bridge Languages is the right fit for your child before making a long-term commitment.</p>
+                        <p><a href="bridge-languages.html#contact-form" class="highlight" style="text-decoration: underline;">Contact us</a> to learn more about trial arrangements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latin-Specific -->
+            <div class="faq-category">
+                <h2 class="category-title">Latin-Specific Questions</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>My child finds Latin grammar overwhelming. Can you help?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. Latin grammar—declensions, conjugations, cases—is complex, but it becomes manageable when broken down systematically.</p>
+                        <p>Our tutors excel at making grammar accessible. They:</p>
+                        <ul>
+                            <li>Explain concepts in multiple ways until they click</li>
+                            <li>Use patterns and memory techniques to simplify learning</li>
+                            <li>Provide plenty of practice with immediate feedback</li>
+                            <li>Connect grammar to translation so students see why it matters</li>
+                        </ul>
+                        <p>Many students who initially found Latin impossible discover they actually enjoy it once the fundamentals make sense.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do you help with vocabulary retention?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Vocabulary is one of the biggest challenges in Latin. We teach proven strategies:</p>
+                        <ul>
+                            <li><span class="highlight">Etymology:</span> Connecting Latin words to English derivatives</li>
+                            <li><span class="highlight">Word families:</span> Learning related words together</li>
+                            <li><span class="highlight">Spaced repetition:</span> Regular review schedules for long-term retention</li>
+                            <li><span class="highlight">Context:</span> Learning words through reading, not just lists</li>
+                        </ul>
+                        <p>We also recommend effective tools and techniques students can use independently.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Will this help with translation or just grammar?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Both! Grammar is the foundation, but translation is the goal.</p>
+                        <p>We spend significant time on translation practice—teaching students how to:</p>
+                        <ul>
+                            <li>Identify sentence structure and key elements</li>
+                            <li>Make informed guesses when unsure</li>
+                            <li>Produce fluent, natural English translations</li>
+                            <li>Work efficiently under exam conditions</li>
+                        </ul>
+                        <p>Translation is a skill that improves with practice and feedback, both of which we provide in abundance.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Still Have Questions?</h2>
+            <p>We're here to help. Reach out and we'll answer any questions you have about our Latin tutoring program.</p>
+            <a href="bridge-languages.html#contact-form" class="btn btn-primary">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Bridge Languages. All rights reserved.</p>
+            <p>Questions? <a href="mailto:info@bridgelanguages.com">info@bridgelanguages.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const wasActive = faqItem.classList.contains('active');
+                
+                // Close all other items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!wasActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.pageYOffset > 100) {
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
